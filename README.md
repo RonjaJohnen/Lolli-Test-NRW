@@ -28,13 +28,11 @@ entries - 7-day-incidence for 4-10 year olds
 "Sozialindexstufe" - school social deprivation index
 
 - **"poolAufloesung":** \
-based on script "Pool_Aufloesung.R"\
 "poolId" - unique identifier for pool-PCRs \
-"singleId" - unique identifier for single-PCRs \
+"singleId" - unique identifier for corresponding single-PCRs \
 "Begruendung" - description if a positive pool-PCR for a positive single-PCR was found
 
 - **"pool_infos":** \
-based on script "Pool_Aufloesung.R"\
 "poolsId" - unique identifier for pool-PCRs \
 "clientId" - unique identifier for every school \
 "nPos" - number of positive single-PCRs for the corresponding positive pool-PCR \
