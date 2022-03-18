@@ -9,7 +9,7 @@ library(reshape)
 
 #####load data#####
 # Pool and Single-PCR Results
-df_list_clean <- readRDS(file='../Lolli-Test-NRW-Data/df_list_clean.rds')
+df_list_clean <- readRDS(file='demo_data/df_list_clean_demo.rds')
 
 #Use shorter variable names
 p <- df_list_clean$tbl_pools
@@ -18,23 +18,23 @@ s <- df_list_clean$tbl_single
 KWs <-  c(19:25,34:37)
 
 #Inzidenz
-inzidenz_nrw <- readRDS("../Lolli-Test-NRW-Data/inzidenz_nrw.rds")
+inzidenz_nrw <- readRDS("demo_data/inzidenz_nrw.rds")
 inzidenz_nrw_melt<- melt(inzidenz_nrw)
 inzidenz_nrw_melt$KW <- sapply(as.character(inzidenz_nrw_melt$variable), function(x) strsplit(x, "KW")[[1]][[2]])
 colnames(inzidenz_nrw_melt)[3] <- "incidence"
 
 # SSI
-SSIperSchool <- readRDS("../Lolli-Test-NRW-Data/SSIperSchool.rds")
+SSIperSchool <- readRDS("demo_data/SSIperSchool_demo.rds")
 # Poolauflösung
-poolAufloesung <- readRDS("../Lolli-Test-NRW-Data/poolAufloesung.rds")
+poolAufloesung <- readRDS("demo_data/poolAufloesung_demo.rds")
 # Pool Infos
-pool_infos <- readRDS("../Lolli-Test-NRW-Data/pool_infos.rds")
+pool_infos <- readRDS("demo_data/pool_infos_demo.rds")
 # Soll daten
-Soll_daten <- readRDS("../Lolli-Test-NRW-Data/Soll_daten.rds")
+Soll_daten <- readRDS("demo_data/Soll_daten_demo.rds")
 
 #####Compute positiverate per district#####
 #Load KreisProSchule
-districtPerSchool<-readRDS('../Lolli-Test-NRW-Data/districtPerSchool.rds')
+districtPerSchool<-readRDS('demo_data/districtPerSchool_demo.rds')
 
 # add calendarweek and split per calendarweek
 p_split <- split(p, p$KW)
@@ -195,7 +195,7 @@ df_plot<- data.frame(names(Observed),Observed,Expected,Observed/Expected)
 colnames(df_plot) <- c("variant","observed","expected","observed/expected")
 
 # Extended Figure 8a
-ggplot(p[!duplicated(p[,c(1:20,27)]),]) + geom_boxplot(aes(x=as.character(KW),y=pPerChild))+xlab('calendar week')+
+ggplot(p[!duplicated(p),]) + geom_boxplot(aes(x=as.character(KW),y=pPerChild))+xlab('calendar week')+
   ylab('Probability to be positive per child')
 # Figure 4e
 ggplot( melt(df_plot[,-4]) ) + geom_bar(aes(x=variant,y=value,fill=variable),position="dodge",stat="identity")+theme_readable()+theme(legend.title = element_blank() )+ylab("Number of Pool-PCRs")
