@@ -122,8 +122,8 @@ poolSollAbJuni: "avgPoolGroesseAbJuni" - pool size for full-time schooling
 "avgClassSize" - average size of the classes in one school 
 
 - **"Altersstruktur 20210630_SuS_Schulen mit Primarstufe.xlsx"** \
-"SCHULNR"- unique identifier for every school 
-"Schulform" - type of school
+"SCHULNR"- unique identifier for every school \
+"Schulform" - type of school \
 "SuS insgesamt" - Number of pupils per grade
 
 
